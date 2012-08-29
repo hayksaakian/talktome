@@ -1,0 +1,9 @@
+<p><%= link_to "Make a new room", new_room_path %></p>
+<% @rooms.each do |room| %>
+	<hr/>
+	<h2><%= link_to room.name, room %></h2>
+	<p>
+		<small><%= link_to "Edit", edit_room_path(room) %></small> |
+		<small><%= link_to "Destroy", room, :confirm => "You best be sure...", :method => :delete %></small>
+	</p>
+<% end %>

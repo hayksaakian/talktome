@@ -1,0 +1,22 @@
+<h2>Edit Room:</h2>
+<%= form_for @room do |f|%>
+	<% if @room.errors.any? %>
+		<h3>Errors:</h3>
+		<ul>
+			<% @room.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+		</ul>
+	<% end %>
+	<p>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+	</p>
+	<p>
+		<%= f.label :public %>
+		<%= f.check_box :public %> <br/>
+	</p>
+	<p>
+		<%= f.submit "Update this mess" %>
+	</p>
+<% end %>

@@ -1,0 +1,18 @@
+development:
+  host: localhost
+  database: talktome_development
+  parameterize_keys: false
+
+test:
+  host: localhost
+  database: talktome_test
+
+# set these environment variables on your prod server
+production:
+  uri: <%= ENV['MONGOLAB_URI'] %>
+  database: talktome_prod
+  # slaves: khghjghj
+  #   - host: slave1.local
+  #     port: 27018
+  #   - host: slave2.local
+  #     port: 27019

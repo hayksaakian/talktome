@@ -1,0 +1,22 @@
+<h2>New Room:</h2>
+<%= form_for @room, :html => {:multipart => true} do |f|%>
+	<% if @room.errors.any? %>
+		<h3>Errors:</h3>
+		<ul>
+			<% @room.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+		</ul>
+	<% end %>
+	<p>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+	</p>
+	<p>
+		<%= f.label :public %>
+		<%= f.check_box :public %> <br/>
+	</p>
+	<p>
+		<%= f.submit "Save this mess" %>
+	</p>
+<% end %>
