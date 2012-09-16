@@ -1,10 +1,10 @@
 Talktome::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
-  AlchemyAPI.key = "7d95492a78683a6a0e15dcd075a7aca289c9c3d7"
+  ALCHEMY_API_KEY = "7d95492a78683a6a0e15dcd075a7aca289c9c3d7"
 
   OPENTOK_KEY = 16296782
-  OPENTOK_SECRET = "2389a1e0ab9aefb6388a7cf18a8a051c0521355a"
+  OPENTOK_SECRET="2389a1e0ab9aefb6388a7cf18a8a051c0521355a"
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
