@@ -1,0 +1,31 @@
+<h1>Log in</h1>
+<%= form_tag sessions_path do %>
+	<div class="form-horizontal">
+	    <fieldset>
+	      <div class="control-group">
+	            <label class="control-label" for="prependedInput">Email Address</label>
+	            <div class="controls">
+	              <%= text_field_tag :email, params[:email], :class => "span3", :placeholder => "name@gmail.com" %>
+	            </div>
+	      </div>
+	    </fieldset>
+	    <fieldset>
+	      <div class="control-group">
+	            <label class="control-label" for="prependedInput">Password</label>
+	            <div class="controls">
+	              <%= password_field_tag :password, params[:password], :class => "span3" %>
+	            </div>
+	      </div>
+	    </fieldset>
+	    <fieldset>
+	      <div class="control-group">
+	            <label class="control-label" for="prependedInput"></label>
+	            <div class="controls">
+	              <%= submit_tag "Log in", :class => "btn btn-warning" do %>
+	                <i class="icon-refresh icon-white"></i>
+	              <% end %>
+	            </div>
+	      </div>
+	    </fieldset>
+	</div>
+<% end %>

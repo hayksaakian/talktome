@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"room",
+				"room_state"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"start",
+				"startPublishing"
+			],
+			[
+				"sessin",
+				"sessionId"
+			],
+			[
+				"OPENTOK",
+				"OPENTOK_AUTH"
+			],
+			[
 				"image",
 				"image_locations"
 			],
@@ -24,10 +44,26 @@
 	"buffers":
 	[
 		{
-			"file": "Gemfile",
+			"file": "app/models/room.rb",
 			"settings":
 			{
-				"buffer_size": 765,
+				"buffer_size": 439,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/rooms/index.html.erb",
+			"settings":
+			{
+				"buffer_size": 346,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/rooms/show.html.erb",
+			"settings":
+			{
+				"buffer_size": 6493,
 				"line_ending": "Unix"
 			}
 		}
@@ -56,10 +92,30 @@
 	},
 	"file_history":
 	[
+		"/Users/hayk/ror/talktome/app/models/tok_session.rb",
+		"/Users/hayk/Desktop/opentok-sample-code/talk-to-me/askpage2.htm",
+		"/Users/hayk/Desktop/opentok-sample-code/talk-to-me/askpage.htm",
+		"/Users/hayk/ror/talktome/app/views/rooms/show.html.erb",
+		"/Users/hayk/ror/talktome/Gemfile",
+		"/Users/hayk/ror/talktome/config/environments/production.rb",
+		"/Users/hayk/ror/talktome/config/environments/development.rb",
+		"/Users/hayk/ror/talktome/app/controllers/rooms_controller.rb",
+		"/Users/hayk/ror/talktome/app/views/layouts/application.html.erb",
+		"/Users/hayk/ror/talktome/app/views/rooms/edit.html.erb",
+		"/Users/hayk/ror/talktome/app/views/rooms/new.html.erb",
+		"/Users/hayk/ror/talktome/app/views/rooms/index.html.erb",
+		"/Users/hayk/ror/talktome/.git/COMMIT_EDITMSG",
+		"/Users/hayk/ror/talktome/config/mongoid.yml",
+		"/Users/hayk/ror/talktome/app/models/room.rb",
+		"/Users/hayk/ror/talktome/config/routes.rb",
+		"/Users/hayk/ror/talktome/config/application.rb",
+		"/Users/hayk/ttm/talktome/config/routes.rb",
+		"/Users/hayk/ttm/talktome/app/views/questions/index.html.erb",
+		"/Users/hayk/ttm/talktome/app/views/layouts/inner.html.erb",
+		"/Users/macmini/rorhayk/blog/Gemfile",
 		"/Users/hayk/ror/cl_flagger/config/mongoid.yml",
 		"/Users/hayk/ror/cl_flagger/Gemfile",
 		"/Users/hayk/ror/cl_flagger/config/application.rb",
-		"/Users/macmini/rorhayk/blog/Gemfile",
 		"/Users/macmini/rorhayk/blog/app/uploaders/picture_uploader.rb",
 		"/Users/macmini/rorhayk/blog/app/uploaders/image_uploader.rb",
 		"/Users/macmini/Desktop/simple.csv",
@@ -69,7 +125,7 @@
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -84,6 +140,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"show",
+			"connect()",
+			"connect",
 			"active_re"
 		],
 		"highlight": true,
@@ -107,26 +166,80 @@
 			[
 				{
 					"buffer": 0,
-					"file": "Gemfile",
+					"file": "app/models/room.rb",
 					"settings":
 					{
-						"buffer_size": 765,
+						"buffer_size": 439,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								317,
+								317
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/views/rooms/index.html.erb",
+					"settings":
+					{
+						"buffer_size": 346,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								164,
+								135
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/views/rooms/show.html.erb",
+					"settings":
+					{
+						"buffer_size": 6493,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5913,
+								5913
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2710.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -140,7 +253,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 31.0
 	},
 	"layout":
 	{

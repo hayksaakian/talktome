@@ -7,13 +7,20 @@ gem "bson_ext", "1.6.2"
 gem "mongo"
 
 gem 'opentok'
+gem 'httparty'
+gem 'alchemy-api-rb', :require => 'alchemy_api'
+
+# gem 'nokogiri'
+# gem 'geo_location'
+
+gem "bcrypt-ruby", :require => "bcrypt"
 
 # gem "carrierwave"
 # gem "carrierwave-mongoid"
 
 # #gem 'imgkit'
 
-#gem 'csv-to-json', :git => 'git://github.com/maerzbow/csv-to-json.git'
+gem 'bootstrap-sass'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

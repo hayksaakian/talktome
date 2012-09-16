@@ -1,0 +1,88 @@
+<p>Finding your location: <span id="status">checking...</span></p>
+<script type="text/javascript">
+function success(position) {
+    var s = document.querySelector('#status');
+  
+  if (s.className == 'success') {
+    // not sure why we're hitting this twice in FF, I think it's to do with a cached result coming back    
+    return;
+  }
+  
+  s.innerHTML = "found you!";
+  s.className = 'success';
+
+  s.innerHTML = s.innerHTML + " You are at "+ position.coords.latitude + " and "+ position.coords.longitude +"(at least within a "+position.coords.accuracy+" meter radius)"
+}
+
+function error(msg) {
+  var s = document.querySelector('#status');
+  s.innerHTML = typeof msg == 'string' ? msg : "failed";
+  s.className = 'fail';
+  
+  // console.log(arguments);
+}
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(success, error);
+} else {
+  error('not supported');
+}
+
+</script>
+
+<div class="tab-pane active form-horizontal" id="<%= @user.id %>">
+  <%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+      <div class="error_messages">
+        <h3>Errors:</h3>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <h3>User Contact Settings</h3>
+    <p>Enter your user account settings & contact information</p>
+    <hr>
+
+    <fieldset>
+      <div class="control-group">
+            <label class="control-label" for="prependedInput">Email Address</label>
+            <div class="controls">
+              <%= f.text_field :email, :class => "span3", :placeholder => "ex: name@gmail.com" %>
+            </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="control-group">
+            <label class="control-label" for="prependedInput">Password</label>
+            <div class="controls">
+              <%= f.password_field :password, :class => "span3", :placeholder => "ex: pink elephants run mildly" %>
+            </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="control-group">
+            <label class="control-label" for="prependedInput">Password Confirmation</label>
+            <div class="controls">
+              <%= f.password_field :password_confirmation, :class => "span3" %>
+            </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div class="control-group">
+            <label class="control-label" for="prependedInput"></label>
+            <div class="controls">
+              <%= f.submit "Commit User Info", :class => "btn btn-warning" do %>
+                <i class="icon-refresh icon-white"></i>
+              <% end %>
+            </div>
+      </div>
+    </fieldset>
+  <% end %>
+</div>

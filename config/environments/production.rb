@@ -1,8 +1,8 @@
 Talktome::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
-OPENTOK_AUTH = {"key" => ENV['OPENTOK_KEY'], "secret" => ENV['OPENTOK_SECRET']}
-
+  AlchemyAPI.key = ENV['ALCHEMY_API_KEY']
+  OPENTOK_AUTH = {"key" => ENV['OPENTOK_KEY'], "secret" => ENV['OPENTOK_SECRET']}
 
   # Code is not reloaded between requests
   config.cache_classes = true
