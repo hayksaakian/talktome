@@ -1,9 +1,12 @@
 Talktome::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-
-
+  
 #  OPENTOK_KEY = #FROM HEROKU CONFIG
 #  OPENTOK_SECRET= #FROM HEROKU CONFIG
+
+  config.after_initialize do  
+    AlchemyAPI.key = ENV['ALCHEMY_API_KEY']
+  end
 
   # Code is not reloaded between requests
   config.cache_classes = true
