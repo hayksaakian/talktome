@@ -1,24 +1,5 @@
 class QueriesController < ApplicationController
-  before_filter :require_user, :only => [:create, :show]
-
-  def require_user
-    if not current_user
-      flash[:notice] = "You'll need to login or register to do that"
-      @user_session ||= Session.new
-      if params[:query]
-        session[:last_query] = params[:query]
-      end
-      respond_to do |format|
-        format.html {render :template => 'sessions/new'}
-        format.js {
-          render :template => 'sessions/new', :layout => false
-        }
-      end
-    else
-      #session[:last_query] = nil
-    end
-  end
-
+  before_filter :require_user, :only => [:create, :show, :update, :destroy]
 
   # POST /queries
   # POST /queries.json
@@ -28,11 +9,12 @@ class QueriesController < ApplicationController
     params[:query][:sessionId] = session.session_id
 
     @query = Query.new(params[:query])
-
+    @query.asker = current_user.asker
     respond_to do |format|
       if @query.save
         format.html { redirect_to @query, notice: 'Query was successfully created.' }
         format.json { render json: @query, status: :created, location: @query }
+        format.js { render :js => "window.location.href = "+query_path(@query).to_s }
       else
         format.html { render action: "new" }
         format.json { render json: @query.errors, status: :unprocessable_entity }
@@ -43,7 +25,8 @@ class QueriesController < ApplicationController
   # GET /queries
   # GET /queries.json
   def index
-    @queries = Query.all.order_by([:updated_at, :asc])
+    #@queries = Query.where(:public => true).order_by([:updated_at, :asc])
+    @queries = Query.order_by([:created_at, :desc])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -56,19 +39,24 @@ class QueriesController < ApplicationController
   def show
     @query = Query.find(params[:id])
     config_opentok
-    @tok_token = @opentok.generate_token :session_id =>
-          @query.sessionId
+    @tok_token = @opentok.generate_token :session_id => @query.sessionId
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @query }
+      format.js
     end
   end
 
   # GET /queries/new
   # GET /queries/new.json
   def new
-    @query = Query.new
-
+    #need a hack to check if you have an older query
+    if session[:last_query]
+      @query = Query.new(session[:last_query])
+      session[:last_query] = nil
+    else
+      @query = Query.new
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @query }

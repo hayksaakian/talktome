@@ -1,29 +1,10 @@
 class SessionsController < ApplicationController
-	def authenticate
-	  current_user = User.authenticate(params[:email], params[:password])
-	  if logged_in?
-	    if params[:remember_me] == "1"
-	       current_user.remember_me unless current_user.remember_token?
-	       cookies[:auth_token] = { :value => current_user.remember_token, 
-	         :expires => current_user.remember_token_expires_at }
-	    end
-	  end
-	end
-
-	def require_user
-	  unless current_user
-	    flash[:notice] = "You'll need to login or register to do that"
-	    @user_session ||= Session.new
-	    respond_to do |format|
-	      format.html {render :template => 'sessions/new'}
-	      format.js {
-	        render :template => 'sessions/new', :layout => false
-	      }
-	    end
-	  end
-	end
-
 	def new
+		@user = User.new
+		respond_to do |format|
+	      format.html
+	      format.js
+	    end
 	end
 
 	def create
@@ -31,7 +12,17 @@ class SessionsController < ApplicationController
 	  if user
 	    session[:user_id] = user.id
 		  if session[:last_query]
-		  	redirect_to queries_path, :query => session[:last_query]
+		  	@query = Query.new(session[:last_query])
+		  	@query.asker = current_user.asker
+		  	respond_to do |format|
+		  		if @query.save		  			
+		  			session[:last_query] = nil
+		        format.html {	redirect_to @query }
+		        format.js { flash[:notice] = "Javascript works, YAY!" }
+		      else
+		      	format.html {	redirect_to root_url, notice: 'failed at creating a query, after login, with a last_query' }
+		      end
+	      end
 		  else
 	    	redirect_to root_url, :notice => "Logged in!"
 		  end

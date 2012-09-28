@@ -1,31 +1,70 @@
-<h1>Log in</h1>
-<%= form_tag sessions_path do %>
-	<div class="form-horizontal">
-	    <fieldset>
-	      <div class="control-group">
-	            <label class="control-label" for="prependedInput">Email Address</label>
-	            <div class="controls">
-	              <%= text_field_tag :email, params[:email], :class => "span3", :placeholder => "name@gmail.com" %>
-	            </div>
-	      </div>
-	    </fieldset>
-	    <fieldset>
-	      <div class="control-group">
-	            <label class="control-label" for="prependedInput">Password</label>
-	            <div class="controls">
-	              <%= password_field_tag :password, params[:password], :class => "span3" %>
-	            </div>
-	      </div>
-	    </fieldset>
-	    <fieldset>
-	      <div class="control-group">
-	            <label class="control-label" for="prependedInput"></label>
-	            <div class="controls">
-	              <%= submit_tag "Log in", :class => "btn btn-warning" do %>
-	                <i class="icon-refresh icon-white"></i>
-	              <% end %>
-	            </div>
-	      </div>
-	    </fieldset>
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+    <% extra = "" %>
+    <% if session[:last_query] %>
+    	<% extra = "to answer: "+session[:last_query][:text] %>
+    <% end %>
+    <h3 id="myModalLabel">Login or Register</h3> 
+    <h4><%= extra %></h4>
+  </div>
+  <div class="modal-body">
+
+		<div class="tabbable tabs-top" style="margin-bottom: 18px;">
+	        <ul class="nav nav-tabs">
+	          <li class="active"><a href="#signup_tab" data-toggle="tab">Sign Up</a></li>
+	          <li class=""><a href="#login_tab" data-toggle="tab">Log In</a></li>
+	          <!-- Iterate through providers and make an li -->
+	          <li class=""><a href="#provider_NAME" data-toggle="tab">NAME</a></li>
+	        </ul>
+	    <div class="tab-content">
+		    <div class="tab-pane active" id="signup_tab">
+		    	<% @user = User.new %>
+			  	<%= render :template => 'users/_form' %>
+			  </div>
+		    <div class="tab-pane" id="login_tab">
+					<%= form_tag sessions_path, :id => '' do %>
+						<div class="form-horizontal">
+						    <fieldset>
+						      <div class="control-group">
+						            <label class="control-label" for="prependedInput">Email Address</label>
+						            <div class="controls">
+						              <%= text_field_tag :email, params[:email], :class => "span3", :placeholder => "name@gmail.com" %>
+						            </div>
+						      </div>
+						    </fieldset>
+						    <fieldset>
+						      <div class="control-group">
+						            <label class="control-label" for="prependedInput">Password</label>
+						            <div class="controls">
+						              <%= password_field_tag :password, params[:password], :class => "span3" %>
+						            </div>
+						      </div>
+						    </fieldset>
+						    <fieldset>
+						      <div class="control-group">
+						            <label class="control-label" for="prependedInput"></label>
+						            <div class="controls">
+						              <%= submit_tag "Log in", :class => "btn btn-warning", :id => 'create_session_button' do %>
+						                <i class="icon-refresh icon-white"></i>
+						              <% end %>
+						            </div>
+						      </div>
+						    </fieldset>
+						</div>
+					<% end %>
+	      </div> <!-- .tab-pane ad -->
+	      <!-- iterate through omniauth providers -->
+      	<div class="tab-pane" id="provider_NAME" >
+      		This is where the confirm/accept window would go for a particular provider
+      	</div>
+      </div>
 	</div>
-<% end %>
+  </div>
+</div>
+<script type="text/javascript">
+	//hide the modal on submit
+	$("form").submit(function() {
+		$('#myModal').modal('hide');
+	});
+</script>

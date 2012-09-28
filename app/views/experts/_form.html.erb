@@ -1,0 +1,21 @@
+<%= form_for(@expert) do |f| %>
+  <% if @expert.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@expert.errors.count, "error") %> prohibited this expert from being saved:</h2>
+
+      <ul>
+      <% @expert.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :resume %><br />
+    <%= f.text_area :resume, :placeholder => "Paste your resume here. TODO: You can ALSO upload a pretty one below, if you'd like" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

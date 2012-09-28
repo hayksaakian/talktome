@@ -6,6 +6,10 @@ Talktome::Application.configure do
   OPENTOK_KEY = 16296782
   OPENTOK_SECRET="2389a1e0ab9aefb6388a7cf18a8a051c0521355a"
 
+  config.after_initialize do  
+    AlchemyAPI.key = ALCHEMY_API_KEY
+  end
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

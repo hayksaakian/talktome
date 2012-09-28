@@ -1,21 +1,26 @@
 <%= link_to "Talk to Me", root_path, :class => 'brand' %>
-<ul class="nav">
-  <% if true %>
+<% if current_user %>
+<ul class="nav pull-left">
+  <li>
+    <% if not current_user.expert == nil %>
+        <%= link_to "Answer Questions", queries_path %>
+    <% else %>
+      <%= link_to "Become an Expert to Answer Questions", new_expert_path %>
+    <% end %>      
+  </li>
+</ul>
+<% end %>
+<ul class="nav pull-right">
+  <% if current_user %>
     <li>
-      <%= link_to "Home1", root_path, :class => 'brand' %>      
+      <%= link_to "Log Out", log_out_path %>
     </li>
   <% else %>
     <li>
-    <%= link_to "Home2", root_path, :class => 'brand' %>
+   <%= link_to "Sign Up", sign_up_path %>
     </li>
-  <% end %>
-  <% if true %>
     <li>
-    <%= link_to "Home3", root_path, :class => 'brand' %>
-    </li>
-  <% else %>
-    <li>
-   <%= link_to "Home4", root_path, :class => 'brand' %>
+   <%= link_to "Log in", log_in_path %>
     </li>
   <% end %>
 </ul>

@@ -1,0 +1,19 @@
+<p>
+  <b>Resume:</b>
+  <%= @expert.resume %>
+</p>
+<p>
+	<b>Qualifications:</b>
+	<ol>
+		<%= @expert.qualifications.each do |q| %>
+			<li><%= q.to_s %></li>
+		<% end %>
+	</ol>
+	As String
+	<ol>
+		<%= @expert.qualifications.to_s %>
+	</ol>
+</p>
+
+<%= link_to 'Edit', edit_expert_path(@expert) %> |
+<%= link_to 'Back', experts_path %>

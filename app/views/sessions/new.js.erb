@@ -1,0 +1,5 @@
+//show js popup by adding session new.html.erb inside a modal thing by inject the html into whatever page you're on
+var html = "<%= escape_javascript(render :template => 'sessions/new.html.erb', :layout => false) %>";
+//inject the html for modals
+$("body").prepend(html);
+$('#LoginModal').modal('show');

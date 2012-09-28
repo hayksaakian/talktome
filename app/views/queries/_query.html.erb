@@ -1,0 +1,9 @@
+  <tr>
+    <td><%= query.text %></td>
+    <td><%= query.keywords.to_s %></td>
+    <td><%= query.created_at.to_s %></td>
+    <td><%= query.httpresponse.to_s %></td>
+    <td><%= link_to 'Show', query %></td>
+    <td><%= link_to 'Edit', edit_query_path(query) %></td>
+    <td><%= link_to 'Destroy', query, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>

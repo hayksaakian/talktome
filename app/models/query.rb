@@ -1,15 +1,19 @@
 class Query
   include Mongoid::Document
-  has_one :asker
-  has_one :expert
+  include Mongoid::Timestamps
+  belongs_to :asker
+  belongs_to :expert
 
   field :sessionId, :type => String
   field :text, :type => String
   field :keywords, :type => Array, :default => []
   field :httpresponse, :type => String
+  field :geo_lat, :type => String
+  field :geo_lng, :type => String
+  field :city_location, :type => String
   field :public, :type => Boolean
 
-#  after_create :get_keywords
+  after_create :get_keywords, :set_asker_location
 
   def get_keywords
     self.text = self.text + '?'
@@ -28,9 +32,14 @@ class Query
   	self.save
   end
 
+  def set_asker_location
+    #maybe i;d like to maintain some record of prior locations
+    self.asker.update_attribute(:location, [self.geo_lat.to_f, self.geo_lng.to_f])
+  end
+
   def state
   	if expert and asker
-  		self.update_attribute(public: false)
+  		self.update_attribute(:public, false)
   		"occupied"
   	elsif asker
   		"waiting for expert"
@@ -40,4 +49,6 @@ class Query
   		"unoccupied"
   	end
   end
+
+
 end

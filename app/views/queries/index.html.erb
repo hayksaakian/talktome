@@ -4,6 +4,7 @@
   <tr>
     <th>Text</th>
     <th>Keywords</th>
+    <th>Asked at</th>
     <th>response</th>
     <th></th>
     <th></th>
@@ -11,14 +12,7 @@
   </tr>
 
 <% @queries.each do |query| %>
-  <tr>
-    <td><%= query.text %></td>
-    <td><%= query.keywords.to_s %></td>
-    <td><%= query.httpresponse.to_s %></td>
-    <td><%= link_to 'Show', query %></td>
-    <td><%= link_to 'Edit', edit_query_path(query) %></td>
-    <td><%= link_to 'Destroy', query, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+  <%= render query %>
 <% end %>
 </table>
 

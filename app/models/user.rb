@@ -1,9 +1,11 @@
 class User
   include Mongoid::Document
-  attr_accessible :email, :password, :password_confirmation, :asker, :expert
+  attr_accessible :email, :password, :password_confirmation, :asker, :expert, :location
   has_one :expert
   has_one :asker
 
+  field :account_type, :type => String
+  field :location, :type => Array, :default => [0, 0]
   field :email, :type => String
   field :password_hash, :type => String
   field :password_salt, :type => String
